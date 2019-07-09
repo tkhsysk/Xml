@@ -46,6 +46,8 @@ namespace Xml
             Debug.Indent();
             Debug.WriteLine(ds.Tables[0].Rows[0].Field<int>("Value"));
             Debug.Unindent();
+
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void button3_Click(object sender, EventArgs e)

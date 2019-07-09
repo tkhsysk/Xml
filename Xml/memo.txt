@@ -1,0 +1,4 @@
+﻿xdoc.root.add
+elements.remove
+element.replacewith
+xdoc.root.elements.where
