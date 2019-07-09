@@ -77,9 +77,6 @@ namespace Xml
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // 名前空間がついた場合
-            // http://neareal.net/index.php?Programming%2F.NetFramework%2FLINQ%2FLinqAndXmlNamespace
-
             try
             {
                 var xdoc = XDocument.Load("item.xml");
@@ -90,8 +87,8 @@ namespace Xml
                     XElement xname = item.Element("name");
                     XElement xname2 = item.Element("id");
 
-                    System.Diagnostics.Debug.WriteLine(xname.Value);
-                    System.Diagnostics.Debug.WriteLine(xname2.Value);
+                    Debug.WriteLine(xname.Value);
+                    Debug.WriteLine(xname2.Value);
                 }
             }
             catch (XmlException ex)
@@ -101,6 +98,34 @@ namespace Xml
             catch (NullReferenceException ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // 名前空間がついた場合
+            // http://neareal.net/index.php?Programming%2F.NetFramework%2FLINQ%2FLinqAndXmlNamespace
+
+            var xdoc = XDocument.Load("ds.xml");
+
+            // 名前空間
+            var xns = xdoc.Root.Name.Namespace;
+
+            var xelements = xdoc.Root.Elements();
+
+            foreach(var x in xelements)
+            {
+                // DataSetの場合、名前空間の指定必要
+                var date = x.Element(xns + "Date");
+                var value = x.Element(xns + "Value");
+
+                Debug.WriteLine(date.Value);
+                Debug.WriteLine(value.Value);
             }
         }
     }
